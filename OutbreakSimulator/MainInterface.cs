@@ -6,6 +6,8 @@ namespace OutbreakSimulator
 {
     public partial class MainInterface : Form
     {
+        const int tickInterval = 500;
+
         private SimulatorController controller;
         private Graphics graphics;
         private Timer tick;
@@ -18,7 +20,7 @@ namespace OutbreakSimulator
             controller.SetBoundaries(this.MaximizedBounds);
             this.graphics = this.CreateGraphics();
             this.tick = new Timer();
-            tick.Interval = 25;
+            tick.Interval = tickInterval;
             tick.Tick += new EventHandler(Step);
             tick.Start();
             this.Paint += new PaintEventHandler(Draw);

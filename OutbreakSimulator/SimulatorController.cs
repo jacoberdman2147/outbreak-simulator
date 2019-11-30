@@ -8,7 +8,7 @@ namespace OutbreakSimulator
     class SimulatorController
     {
         const double distanceInfectThreshold = 100;
-        const int numberOfPeople = 10000;
+        const int numberOfPeople = 100;
 
         private static SimulatorController instance = new SimulatorController();
         private List<Entity> entities;
