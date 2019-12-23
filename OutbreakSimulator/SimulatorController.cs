@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Timers;
 using OutbreakSimulator.Entities;
 
 namespace OutbreakSimulator
@@ -57,11 +58,14 @@ namespace OutbreakSimulator
 
         public void DrawAll(Graphics g)
         {
-            g.Clear(Color.FromArgb(0,0,0));
+            long t = DateTime.Now.Millisecond;
             foreach (Entity e in entities)
             {
                 e.Draw(g);
             }
+            long t2 = DateTime.Now.Millisecond;
+            Console.Write($"Time to draw: ");
+            Console.WriteLine(t2 - t > 0 ? t2 - t : t2 - t + 1000);
         }
 
         private void MoveAll()
@@ -83,11 +87,10 @@ namespace OutbreakSimulator
             }
         }
 
-        public void Step(Graphics g)
+        public void Step()
         {
             MoveAll();
             TryInfectAll();
-            DrawAll(g);
         }
 
         public void Initialize()

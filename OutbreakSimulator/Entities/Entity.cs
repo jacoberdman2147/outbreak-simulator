@@ -5,7 +5,7 @@ using System.Drawing;
 
 namespace OutbreakSimulator
 {
-    abstract class Entity
+    public abstract class Entity
     {
         protected const int size = 10;
         protected const int maxMove = 50;
@@ -31,7 +31,8 @@ namespace OutbreakSimulator
 
         public void Draw(Graphics g)
         {
-            g.FillEllipse(brush, pos.X, pos.Y, size, size);
+            //g.FillEllipse(brush, pos.X, pos.Y, size, size);
+            g.FillRectangle(brush, pos.X, pos.Y, size, size);
         }
 
         public void Move()

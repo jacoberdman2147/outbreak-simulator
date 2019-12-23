@@ -9,7 +9,6 @@ namespace OutbreakSimulator
         const int tickInterval = 500;
 
         private SimulatorController controller;
-        private Graphics graphics;
         private Timer tick;
 
         public MainInterface()
@@ -18,7 +17,6 @@ namespace OutbreakSimulator
             controller = SimulatorController.getInstance();
             controller.Initialize();
             controller.SetBoundaries(this.MaximizedBounds);
-            this.graphics = this.CreateGraphics();
             this.tick = new Timer();
             tick.Interval = tickInterval;
             tick.Tick += new EventHandler(Step);
@@ -28,12 +26,14 @@ namespace OutbreakSimulator
 
         private void Draw(Object sender, PaintEventArgs e)
         {
-            controller.DrawAll(graphics);
+            e.Graphics.Clear(Color.FromArgb(0, 0, 0));
+            controller.DrawAll(e.Graphics);
         }
 
         private void Step(Object sender, EventArgs e)
         {
-            controller.Step(graphics);
+            controller.Step();
+            this.Invalidate();
         }
     }
 }
